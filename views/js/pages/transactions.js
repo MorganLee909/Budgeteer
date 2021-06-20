@@ -2,13 +2,21 @@ module.exports = {
     transactions: [],
 
     display: function(){
+        let account = user.getAccount();
+
+        document.getElementById("transactionsTitle").innerText = `${account.name} Account Transactions`;
+
         if(this.transactions.length === 0){
-            let account = user.getAccount();
             for(let i = 0; i < account.transactions.length; i++){
                 this.transactions.push(account.transactions[i]);
             }
             this.renderTransactions();
         }
+
+        let from = new Date();
+        from.setDate(1);
+        document.getElementById("searchFromDate").valueAsDate = from;
+        document.getElementById("searchToDate").valueAsDate = new Date();
     },
 
     renderTransactions: function(){
@@ -23,7 +31,7 @@ module.exports = {
             row.children[0].innerText = this.transactions[i].date.toLocaleDateString("en-US", dateOptions);
             row.children[1].innerText = this.transactions[i].category.name;
             row.children[2].innerText = this.transactions[i].location;
-            row.children[3].innerText = `$${this.transactions[i].amount}`;
+            row.children[3].innerText = `$${this.transactions[i].amount.toFixed(2)}`;
             row.onclick = ()=>{controller.openModal("transaction", this.transactions[i])};
             container.appendChild(row);
         }

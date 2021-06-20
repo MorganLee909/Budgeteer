@@ -1,17 +1,34 @@
 <div id="transactionsPage" class="page">
-    <h1>Transactions</h1>
+    <h1 id="transactionsTitle"></h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody id="searchTransactionsBody"></tbody>
-    </table>
+    <div id="transactionsContent">
+        <form id="transactionsSearch">
+            <h2>Search</h2>
+
+            <div class="dateRange">
+                <p>Dates:</p>
+                <div>
+                    <input id="searchFromDate" type="date">
+                    <p>-</p>
+                    <input id="searchToDate" type="date">
+                </div>
+            </div>
+
+            <input class="button" type="submit" value="Search">
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="searchTransactionsBody"></tbody>
+        </table>
+    </div>
 
     <template id="searchTransaction">
         <tr class="searchTransaction">
