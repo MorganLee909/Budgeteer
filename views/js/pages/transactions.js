@@ -20,11 +20,11 @@ module.exports = {
 
             let row = template.cloneNode(true);
             row.classList.add("actionable");
-            row.id = this.transactions[i].id;
             row.children[0].innerText = this.transactions[i].date.toLocaleDateString("en-US", dateOptions);
             row.children[1].innerText = this.transactions[i].category.name;
             row.children[2].innerText = this.transactions[i].location;
             row.children[3].innerText = `$${this.transactions[i].amount}`;
+            row.onclick = ()=>{controller.openModal("transaction", this.transactions[i])};
             container.appendChild(row);
         }
     }
