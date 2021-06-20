@@ -15,6 +15,7 @@ let home = {
         document.getElementById("createAllowanceBtn").onclick = ()=>{controller.openModal("createAllowance")};
         document.getElementById("createTransactionBtn").onclick = ()=>{controller.openModal("createTransaction")};
         document.getElementById("dropdownButton").onclick = ()=>{this.showMenu()};
+        document.getElementById("viewTransactionsButton").onclick = ()=>{controller.openPage("transactionsPage")};
         document.getElementById("addAccountButton").onclick = ()=>{controller.openModal("newAccount")};
         document.getElementById("switchAccountButton").onclick = ()=>{controller.openModal("switchAccount")};
         document.getElementById("incomeInfoButton").onclick = ()=>{this.showInfo("income")};

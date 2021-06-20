@@ -1,4 +1,5 @@
-const home = require("./home.js");
+const homePage = require("./pages/home.js");
+const transactions = require("./pages/transactions.js");
 
 const enterModal = require("./modals/enter.js");
 const newAccountModal = require("./modals/newAccount.js");
@@ -16,6 +17,26 @@ const User = require("./classes/user.js");
 user = null;
 
 controller = {
+    openPage: function(page){
+        let container = document.getElementById(page);
+        let pages = document.querySelectorAll(".page");
+
+        for(let i = 0; i < pages.length; i++){
+            pages[i].style.display = "none";
+        }
+        
+        container.style.display = "flex";
+        
+        switch(page){
+            case "home":
+                homePage.all();
+                break;
+            case "transactionsPage":
+                transactions.display();
+                break;
+        }
+    },
+
     openModal: function(modal, data){
         let modals = document.querySelectorAll(".modal");
         for(let i = 0; i < modals.length; i++){
@@ -100,31 +121,31 @@ controller = {
 
 state = {
     income: function(){
-        home.populateIncome();
-        home.populateAllowances();
-        home.populateStats();
+        homePage.populateIncome();
+        homePage.populateAllowances();
+        homePage.populateStats();
     },
 
     bills: function(){
-        home.populateBills();
-        home.populateStats();
+        homePage.populateBills();
+        homePage.populateStats();
     },
 
     allowances: function(){
-        home.populateAllowances();
-        home.populateStats();
+        homePage.populateAllowances();
+        homePage.populateStats();
     },
 
     transactions: function(){
-        home.populateTransactions();
-        home.populateIncome();
-        home.populateBills();
-        home.populateAllowances();
-        home.populateStats();
+        homePage.populateTransactions();
+        homePage.populateIncome();
+        homePage.populateBills();
+        homePage.populateAllowances();
+        homePage.populateStats();
     },
     
     all: function(){
-        home.all();
+        homePage.all();
     }
 }
 
@@ -139,7 +160,7 @@ fetch("/session")
         }else{
             user = new User(response.accounts);
         }
-        home.buttons();
+        homePage.buttons();
     })
     .catch((err)=>{
         controller.createBanner("SOMETHING WENT WRONG. PLEASE REFRESH THE PAGE", "error");
